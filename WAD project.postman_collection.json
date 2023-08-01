@@ -1,0 +1,461 @@
+{
+	"info": {
+		"_postman_id": "b202341b-25c1-4ec2-80c1-95de6885cdda",
+		"name": "WAD project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27438204"
+	},
+	"item": [
+		{
+			"name": "add menu item",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "spagetti",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "very nice spagett",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "5",
+							"type": "text"
+						},
+						{
+							"key": "category",
+							"value": "noodle",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/api/menu/addmenu",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"menu",
+						"addmenu"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "view menu item",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/menu",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"menu"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update menu item",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "spagetti",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "tell me babay",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "5.5",
+							"type": "text"
+						},
+						{
+							"key": "category",
+							"value": "noodle",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/api/menu/update/647fa6da0c6f0b67244e99b5?name=spagetti&description=very nice spagett&price=5&category=2",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"menu",
+						"update",
+						"647fa6da0c6f0b67244e99b5"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "spagetti"
+						},
+						{
+							"key": "description",
+							"value": "very nice spagett"
+						},
+						{
+							"key": "price",
+							"value": "5"
+						},
+						{
+							"key": "category",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete menu item",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/menu/delete/647f8cd2c7f7716599559b0c",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"menu",
+						"delete",
+						"647f8cd2c7f7716599559b0c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add order",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "accountNumber",
+							"value": "647ba5abfffbc1d5b2b68082",
+							"type": "text"
+						},
+						{
+							"key": "totalPrice",
+							"value": "30",
+							"type": "text"
+						},
+						{
+							"key": "paid",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "Delievered",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "date",
+							"value": "22/03/2023",
+							"type": "text"
+						},
+						{
+							"key": "time",
+							"value": "20:20",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/api/order/addorder",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"order",
+						"addorder"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "view orders",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/order",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete order",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/order/delete/647fadef5bc2774886d302d7",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"order",
+						"delete",
+						"647fadef5bc2774886d302d7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update order",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "accountNumber",
+							"value": "647ba5abfffbc1d5b2b68082",
+							"type": "text"
+						},
+						{
+							"key": "totalPrice",
+							"value": "35",
+							"type": "text"
+						},
+						{
+							"key": "paid",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "date",
+							"value": "22/03/2023",
+							"type": "text"
+						},
+						{
+							"key": "time",
+							"value": "20:20",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/api/order/update/647fac895bc2774886d302d3",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"order",
+						"update",
+						"647fac895bc2774886d302d3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add order item",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "accountNumber",
+							"value": "647ba5abfffbc1d5b2b68082",
+							"type": "text"
+						},
+						{
+							"key": "orderID",
+							"value": "647fac895bc2774886d302d3",
+							"type": "text"
+						},
+						{
+							"key": "itemID",
+							"value": "spagetti",
+							"type": "text"
+						},
+						{
+							"key": "quantity",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "5.5",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/api/orderitem/addorderitem",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"orderitem",
+						"addorderitem"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete order item",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/orderitem/delete/647fb6efa975158a1758c9d8",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"orderitem",
+						"delete",
+						"647fb6efa975158a1758c9d8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "filter order item",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "orderID",
+							"value": "647fac895bc2774886d302d3",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/api/orderitem/filter/647fac895bc2774886d302d3",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"orderitem",
+						"filter",
+						"647fac895bc2774886d302d3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update order item",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "accountNumber",
+							"value": "647ba5abfffbc1d5b2b68082",
+							"type": "text"
+						},
+						{
+							"key": "orderID",
+							"value": "647fac895bc2774886d302d3",
+							"type": "text"
+						},
+						{
+							"key": "itemID",
+							"value": "647fa6da0c6f0b67244e99b5",
+							"type": "text"
+						},
+						{
+							"key": "quantity",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "5.5",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/api/orderitem/update/647fb6dba975158a1758c9d6",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"orderitem",
+						"update",
+						"647fb6dba975158a1758c9d6"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,22 @@
+[{
+  "_id": {
+    "$oid": "647fb6dba975158a1758c9d6"
+  },
+  "accountNumber": "647ba5abfffbc1d5b2b68082",
+  "orderID": "647fac895bc2774886d302d3",
+  "itemID": "647fa6da0c6f0b67244e99b5",
+  "quantity": 2,
+  "price": 5.5,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "647fb91c87fa748d59e2246a"
+  },
+  "accountNumber": "647ba5abfffbc1d5b2b68082",
+  "orderID": "647fac895bc2774886d302d3",
+  "itemID": "spagetti",
+  "quantity": 2,
+  "price": 5.5,
+  "__v": 0
+}]
