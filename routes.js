@@ -2,6 +2,8 @@ const express = require('express');
 const path = require('path');
 const router = express.Router();
 const crypto = require('crypto');
+const cors = require('cors');
+
 
 router.use(express.urlencoded({extended:true}));
 
@@ -64,8 +66,8 @@ function authenticationCheck(req,res,next) {
 router.get('/api/menu',authenticationCheck);
 router.post('/api/menu/addmenu',authenticationCheck);
 
-
-
+router.use(express.json());
+router.use(cors());
 
 // router.get('/',function(req,res){
 // db.connect().then(function(response){
@@ -78,7 +80,16 @@ router.post('/api/menu/addmenu',authenticationCheck);
 router.get('/',function(req,res){
     res.sendFile(__dirname+"/pages/index.html");
 })
+router.get('/menu',function(req,res){
+    res.sendFile(__dirname+"/pages/menu.html");
+})
+router.get('/locate',function(req,res){
+    res.sendFile(__dirname+"/pages/locate.html");
+})
 
+router.get('/nutrition',function(req,res){
+    res.sendFile(__dirname+"/pages/nutrition.html");
+})
 //menu
 router.get('/api/menu',function(req,res){
     db.menuitem()

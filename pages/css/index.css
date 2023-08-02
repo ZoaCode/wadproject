@@ -1,4 +1,7 @@
 h1{
     background-color: lightpink;
-    border: red solig 5px;
+    border: red solid 5px;
+}
+article{
+    background-color: aquamarine;
 }

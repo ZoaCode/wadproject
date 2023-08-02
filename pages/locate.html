@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+    <h1>
+        FIND US
+    </h1>
+    <div class = "location">
+        <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"></script>  
+      <script>
+
+        var settings = {
+            "url"  : "https://developers.onemap.sg/privateapi/auth/post/getToken", 
+            "data" : 
+                    {
+                      "email": "lhtestingsite02@gmail.com", 
+                      "password": "cMzN9EMhSjuXdf5*"
+                    }, 
+            "async" : "true"
+        }
+        try{
+                   $.post(settings).done(function (response) {
+          document.write(response);
+        }); 
+        }
+        catch(e){
+            console.log(e);
+        }
+
+
+      </script>
+    </div>
+    <script src="./js/jquery.min.js"></script>
+    <!-- <script src="./js/locate.js"></script> -->
+</body>
+</html>
