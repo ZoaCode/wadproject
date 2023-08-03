@@ -101,6 +101,10 @@ router.get('/api/menu',function(req,res){
     });
 });
 
+router.get('/login', function(req,res) {
+    res.sendFile(__dirname+"/views/login.html");
+})
+
 router.post('/api/menu/addmenu',function(req,res){
     let data = req.body;
     
