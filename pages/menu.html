@@ -8,37 +8,15 @@
 </head>
 <body>
     <h1>Menu Search</h1>
-    <form action="" method="post">
+    <form class = "menusearch" action="" method="post">
       <input type="text" name="query" placeholder="Enter a dish name">
-      <button type="submit">Search</button>
-    </form>
-    <ul>
-        <script>
-            fetch('/menu', {
-                method: 'get',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    // Additional data for the POST request, if needed
-                })
-            })
-                .then(response => response.json())
-                .then(menuItems => {
-                    // Render the menu items dynamically
-                    const menuContainer = document.getElementById('menu-container');
-                    menuItems.forEach(item => {
-                        const menuItem = document.createElement('li');
-                        // menuItem.innerHTML = `<h3>${item.name}</h3><p>Price: $${item.price}</p>`;
-                        menutitem.innerHtml = "mewh";
-                        menuContainer.appendChild(menuItem);
-                    });
-                })
-                .catch(error => {
-                    console.error('Error fetching menu:', error);
-                });
-        </script>
-    </ul>
-    
+      <button id  = "menusubmit"type="submit">Search</button>
+    </form>     
+    <div class = "menuitem">
+
+    </div>   
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/menu.js"></script>
+    <!-- <script src = "js/auth.js"></script> -->
 </body>
 </html>

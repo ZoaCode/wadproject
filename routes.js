@@ -41,30 +41,8 @@ function authenticationCheck(req,res,next) {
 };
 
 
-// const apiKey = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjYTc5OWJhM2VmYzVlN2Q5ODY3MTM4MzJmNDBhNGM1NCIsImlzcyI6Imh0dHA6Ly9pbnRlcm5hbC1hbGItb20tcHJkZXppdC1pdC0xMjIzNjk4OTkyLmFwLXNvdXRoZWFzdC0xLmVsYi5hbWF6b25hd3MuY29tL2FwaS92Mi91c2VyL3Bhc3N3b3JkIiwiaWF0IjoxNjkwODk5MzUwLCJleHAiOjE2OTExNTg1NTAsIm5iZiI6MTY5MDg5OTM1MCwianRpIjoiZVplOTZaNTl3Um0wVEUwWCIsInVzZXJfaWQiOjIyOCwiZm9yZXZlciI6ZmFsc2V9.llXauT_AHbQG-rMj3GTcGq5qAvQI2HBFrc6VCfUJ0h4"; // Your API key here
 
-// app.get('/api/onemap', async (req, res) => {
-//   const { searchVal, returnGeom, getAddrDetails, pageNum } = req.query;
-//   const url = `https://www.onemap.gov.sg/api/common/elastic/search?searchVal=${searchVal}&returnGeom=${returnGeom}&getAddrDetails=${getAddrDetails}&pageNum=${pageNum}`;
-
-//   try {
-//     const response = await fetch(url, {
-//       method: 'GET',
-//       headers: {
-//         Authorization: apiKey,
-//         'Content-Type': 'application/json',
-//       },
-//     });
-
-//     const data = await response.json();
-//     res.json(data);
-//   } catch (error) {
-//     res.status(500).json({ error: 'Something went wrong' });
-//   }
-// });
-
-router.get('/api/menu',authenticationCheck);
-router.post('/api/menu/addmenu',authenticationCheck);
+// router.get('/api/menu',authenticationCheck);
 
 router.use(express.json());
 router.use(cors());
@@ -77,6 +55,7 @@ router.use(cors());
 // })
 // });
 
+router.get("/logout",authenticationCheck);
 router.get('/',function(req,res){
     res.sendFile(__dirname+"/pages/index.html");
 })
@@ -86,6 +65,9 @@ router.get('/menu',function(req,res){
 router.get('/locate',function(req,res){
     res.sendFile(__dirname+"/pages/locate.html");
 })
+router.get('/cart',function(req,res){
+    res.sendFile(__dirname+"/pages/cart.html");
+})
 
 router.get('/nutrition',function(req,res){
     res.sendFile(__dirname+"/pages/nutrition.html");
@@ -94,20 +76,21 @@ router.get('/nutrition',function(req,res){
 router.get('/api/menu',function(req,res){
     db.menuitem()
     .then(function(response){
-        res.status(500).json(response);
+        console.log(response);
+        res.status(200).json(response);
     })
     .catch(function(error){
+        console.log(response);
         res.status(500).json({"error":error.message});
     });
 });
 
 router.get('/login', function(req,res) {
-    res.sendFile(__dirname+"/views/login.html");
+    res.sendFile(__dirname+"/pages/login.html");
 })
 
 router.post('/api/menu/addmenu',function(req,res){
     let data = req.body;
-    
     db.addMenu(data.name,data.description,data.price,data.category)
     .then(function(response){
         console.log({"message":response});
@@ -125,6 +108,20 @@ router.get('/api/menu/filter/:category',function(req,res){
     .then(function(response){
         console.log({"menu":response});
         res.status(200).json({"message":response});
+    })
+    .catch(function(error){
+        console.log(error);
+        res.status(500).json({"error" : error.message});
+    })
+})
+router.get('/api/menu/:id',authenticationCheck);
+
+router.get('/api/menu/order/:id',function(req,res){
+    let id = req.params.id;
+    db.findmenu({_id:id})
+    .then(function(response){
+        console.log(response);
+        res.status(200).json(response);
     })
     .catch(function(error){
         console.log(error);
@@ -160,6 +157,8 @@ router.delete('/api/menu/delete/:id',function(req,res){
 })
 
 //order
+router.post('/api/order/addorder',authenticationCheck);
+router.post('/api/order/getorder',authenticationCheck);
 router.get('/api/order',function(req,res){
     db.allorders()
     .then(function(response){
@@ -172,8 +171,11 @@ router.get('/api/order',function(req,res){
 
 router.post('/api/order/addorder',function(req,res){
     let data = req.body;
+    console.log("adding order this is data" );
+    console.log(data);
     let accountid = res.locals.userID;
-    db.addorder(accountid,data.totalPrice,data.paid,data.delivered,data.date,data.time)
+    console.log("add order" + accountid);
+    db.addorder({accountId : accountid.toString(),totalPrice : data.totalprice,paid: data.paid,Delievered : data.delivered,date : data.date,time: data.time})
     .then(function(response){
         console.log({"message":response});
         res.status(200).json({"message":response});
@@ -183,7 +185,22 @@ router.post('/api/order/addorder',function(req,res){
         res.status(500).json({"error" : error.message});
     })
 });
-
+router.post('/api/order/getorder',function(req,res){
+    let data = req.body;
+    let accountid = res.locals.userID;
+    let date = data.date;
+    let time = data.time;
+    console.log("get order" + accountid);
+    db.getorders({accountID:accountid.toString(),date:date,time:time})
+    .then(function(response){
+        console.log({"message":response});
+        res.status(200).json({"message":response});
+    })
+    .catch(function(error){
+        console.log(error);
+        res.status(500).json({"error" : error.message});
+    })
+})
 
 router.put('/api/order/update/:id',function(req,res){
     let id = req.params.id;
@@ -225,8 +242,8 @@ router.get('/api/orderitem',function(req,res){
 
 router.post('/api/orderitem/addorderitem',function(req,res){
     let data = req.body;
-
-    db.addorderitem(data.accountNumber,data.orderID,data.itemID,data.quantity,data.price)
+    let accountNumber = res.locals.userID;
+    db.addorderitem(accountNumber,data.orderID,data.itemID,data.quantity,data.price)
     .then(function(response){
         console.log({"message":response});
         res.status(200).json({"message":response});
@@ -304,7 +321,7 @@ router.post('/api/login',function(req,res){
                 // console.log('hutao');
                 res.status(500).json({"message":error.message});
             })
-            res.status(203).json({"message":"alls gd"});
+            // res.status(203).json({"message":"alls gd"});
         }
     })
     .catch(function(error){

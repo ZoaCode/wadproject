@@ -55,7 +55,7 @@ async function register(e) {
 }
 
 async function logout() {
-    let response = await fetch("/api/organizer/logout?token="+sessionStorage.token);
+    let response = await fetch("/api/logout?token="+sessionStorage.token);
     if(response.ok) {
         sessionStorage.removeItem("token");
         location.href="/";

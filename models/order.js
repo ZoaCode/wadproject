@@ -1,9 +1,6 @@
 const mongoose = require('mongoose');
 const orderSchema = mongoose.Schema({
-    account : {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "account"
-    },
+    accountId: String,
     totalPrice: Number,
     paid: String,
     Delievered: String,

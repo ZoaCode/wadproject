@@ -179,17 +179,23 @@ let db = {
     
 
     //order
-    async addorder(saccountNumber,stotalPrice,spaid,sDelievered,sdate,stime){
+    async addorder(conditions){
+        console.log(conditions);
         try{
-            await order.create({
-                accountNumber : saccountNumber,
-                totalPrice : stotalPrice,
-                paid : spaid,
-                Delievered : sDelievered,
-                date : sdate,
-                time : stime
-            });
+            await order.create(
+                conditions
+            );
             return `Your order has been added`;
+
+            // await order.create({
+            //     accountNumber : conditions.accountNumber,
+            //     totalPrice : conditions.totalPrice,
+            //     paid : conditions.paid,
+            //     Delievered : conditions.Delievered,
+            //     date : date,
+            //     time : stime
+            // }).populate('account',{accountNumber:conditions.accountNumber});
+            // return `Your order has been added`;
 
         }
         catch(e){
@@ -200,6 +206,21 @@ let db = {
     async allorders(){
         try {
             let result = await order.find();
+            return result;
+        }
+        catch (e) {
+            console.log(e.message);
+            throw new Error("Error retrieving orders");
+        }
+    },
+
+    async getorders(conditions){
+        try {
+            let accountId  =conditions.accountID;
+            let date = conditions.date;
+            let time  = conditions.time;
+            console.log(date + " " + accountId +" " + time);
+            let result = await order.find({accountId:accountId,date:date,time:time});
             return result;
         }
         catch (e) {
