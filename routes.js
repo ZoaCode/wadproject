@@ -62,6 +62,9 @@ router.get('/',function(req,res){
 router.get('/menu',function(req,res){
     res.sendFile(__dirname+"/pages/menu.html");
 })
+router.get('/menuitem/',function(req,res){
+    res.sendFile(__dirname+"/pages/menudetail.html");
+})
 router.get('/locate',function(req,res){
     res.sendFile(__dirname+"/pages/locate.html");
 })
@@ -113,10 +116,10 @@ router.get('/api/menu/filter/:category',function(req,res){
         console.log(error);
         res.status(500).json({"error" : error.message});
     })
-})
-router.get('/api/menu/:id',authenticationCheck);
+});
 
-router.get('/api/menu/order/:id',function(req,res){
+
+router.get('/api/menu/item/:id',function(req,res){
     let id = req.params.id;
     db.findmenu({_id:id})
     .then(function(response){
@@ -127,7 +130,7 @@ router.get('/api/menu/order/:id',function(req,res){
         console.log(error);
         res.status(500).json({"error" : error.message});
     })
-})
+});
 router.put('/api/menu/update/:id',function(req,res){
     let id = req.params.id;
     let data = req.body;
