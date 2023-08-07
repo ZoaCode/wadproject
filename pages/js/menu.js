@@ -1,6 +1,9 @@
 
 $(async function () {
     counter = 0;
+    let decreasename = "";
+    let increasename = "";
+    let addtoordername = "";
     try {
         let response = await fetch("/api/menu");
         console.log(response);
@@ -26,15 +29,23 @@ $(async function () {
                 <!-- <a href="/editmenuitem?id=${menuitem._id}">Edit</a> -->
             </article>  
             `);
-                let decreasename = ".decrease-quantity"+counter;
-                 let increasename = ".increase-quantity"+counter;
-                $(decreasename).onclick(decreaseQuantity(counter));
-                $(increasename).onclick(increaseQuantity(counter));
-                $(".add-to-order"+counter).onclick(addToOrder(counter));
+
                 counter+=1;
             }
             );
-            
+            for(let i = 0 ; i <= counter ; i++ )
+            {
+                
+                decreasename = ".decrease-quantity"+i;
+                increasename = ".increase-quantity"+i;
+                addtoordername = ".add-to-order"+i;
+                console.log(decreasename);
+                console.log(increasename);
+                console.log(addtoordername);
+                $(decreasename).onclick(decreaseQuantity(i));
+                $(increasename).onclick(increaseQuantity(i));
+                $(addtoordername).onclick(addToOrder(i));
+            }
         } else {
             let err = await response.json();
             console.log(err.message);
@@ -42,7 +53,7 @@ $(async function () {
         <div>Error retrieving menu items<div>  
         `);
         }
-
+        
     }
     catch(e){
         console.log("Error: ", e);
@@ -74,18 +85,18 @@ function increaseQuantity(number) {
     quantityElement.text(quantity);
 }
 
-function addToOrder(counter) {
+function addToOrder(i) {
     // let menuid = menu.menuid;
     // let price = menu.price;
     console.log('adding to order');
     var currentDate = new Date();
     var date = currentDate.getDay() + "/"+(currentDate.getMonth()+1)+"/"+currentDate.getFullYear();
     var time = currentDate.getHours()+":"+currentDate.getMinutes();
-    addOrder(date,time);
+    addOrder(date,time,i,);
 }
 
 
-async function addOrder(date,time){
+async function addOrder(date,time,i){
     let accountEntries = {totalprice: 0,paid:false,delivered:false,date: date,time:time};
     let response = await fetch("/api/order/addorder?token="+sessionStorage.token, {
         method: "post",
